@@ -1,0 +1,365 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+
+.sidebar {
+    background: #080d19;
+}
+
+.nav-link {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 8px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: #122333;
+    color: #67e8f9;
+}
+
+.stat-card,
+.panel {
+    background: #0f172a;
+    border: 1px solid #243044;
+    border-radius: 14px;
+    padding: 22px;
+}
+
+.code-editor {
+    display: block;
+    width: 100%;
+    min-height: 300px;
+    resize: vertical;
+    padding: 20px;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    outline: none;
+    background: #080d19;
+    color: #a5f3fc;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 14px;
+    line-height: 1.8;
+    tab-size: 4;
+}
+
+.code-editor:focus {
+    border-color: #06b6d4;
+    box-shadow: 0 0 0 2px rgb(6 182 212 / 12%);
+}
+
+.primary-btn,
+.secondary-btn {
+    border-radius: 8px;
+    padding: 11px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.primary-btn {
+    background: #06b6d4;
+    color: #06202a;
+    border: 1px solid #06b6d4;
+}
+
+.primary-btn:hover {
+    background: #22d3ee;
+}
+
+.primary-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.secondary-btn {
+    background: #172033;
+    color: #cbd5e1;
+    border: 1px solid #334155;
+}
+
+.secondary-btn:hover {
+    background: #253147;
+}
+
+.empty-state {
+    padding: 36px 16px;
+    text-align: center;
+    border: 1px dashed #334155;
+    border-radius: 10px;
+}
+
+.issue-card {
+    padding: 16px;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.issue-severity {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 5px;
+    background: #422006;
+    color: #fbbf24;
+}
+
+@media (max-width: 640px) {
+    .panel,
+    .stat-card {
+        padding: 16px;
+    }
+
+    .code-editor {
+        min-height: 240px;
+        font-size: 12px;
+    }
+}
+
+/* Issue summary */
+.issue-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.issue-summary-item {
+  padding: 14px;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  background: #0f172a;
+}
+
+.issue-summary-item p {
+  margin: 0 0 8px;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.issue-summary-item strong {
+  font-size: 24px;
+  color: #f8fafc;
+}
+
+/* Severity badges */
+.issue-severity {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.issue-severity.error {
+  color: #fecaca;
+  background: #7f1d1d;
+}
+
+.issue-severity.warning {
+  color: #fde68a;
+  background: #78350f;
+}
+
+/* Responsive summary on smaller screens */
+@media (max-width: 480px) {
+  .issue-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.suggestions-section {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #334155;
+}
+
+.suggestions-heading {
+  margin-bottom: 10px;
+  color: #e2e8f0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.suggestion-card {
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  background: #1e293b;
+}
+
+.suggestion-description {
+  color: #cbd5e1;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.apply-fix-btn {
+  margin-top: 10px;
+  padding: 7px 12px;
+  border-radius: 6px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.apply-fix-btn:hover {
+  background: #1d4ed8;
+}
+
+.apply-fix-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#applyAllBtn {
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+#applyAllBtn[hidden] {
+  display: none;
+}
+
+#applyAllBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* Position Apply All Fixes beside Analyze Code */
+#applyAllBtn {
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* Keep the button hidden when no fixes are available */
+#applyAllBtn[hidden] {
+  display: none;
+}
+
+/* Show a disabled appearance when the button is unavailable */
+#applyAllBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* Highlight the Quality Score card */
+
+.quality-score-card {
+  border-width: 1px;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.10);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* Excellent: green */
+.quality-score-card[data-quality="excellent"] {
+  border-color: #22c55e;
+  background-color: rgba(34, 197, 94, 0.20);
+}
+
+/* Good: blue */
+.quality-score-card[data-quality="good"] {
+  border-color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.08);
+}
+
+/* Needs Improvement: orange */
+.quality-score-card[data-quality="needs-improvement"] {
+  border-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.08);
+}
+
+/* Poor: red */
+.quality-score-card[data-quality="poor"] {
+  border-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.08);
+}
+
+
+/* Quality Score typography */
+.quality-score-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+}
+
+.quality-score-card p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+
+/* Quality Score hover effect */
+.quality-score-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.18);
+}
+
+
+/* Match Quality Score text to its rating */
+.quality-score-card[data-quality="excellent"] strong {
+  color: #15803d;
+}
+
+.quality-score-card[data-quality="good"] strong {
+  color: #1d4ed8;
+}
+
+.quality-score-card[data-quality="needs-improvement"] strong {
+  color: #b45309;
+}
+
+.quality-score-card[data-quality="poor"] strong {
+  color: #b91c1c;
+}
+
+
+/* Rating-specific hover shadows */
+.quality-score-card[data-quality="excellent"]:hover {
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.22);
+}
+
+.quality-score-card[data-quality="good"]:hover {
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.22);
+}
+
+.quality-score-card[data-quality="needs-improvement"]:hover {
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.22);
+}
+
+.quality-score-card[data-quality="poor"]:hover {
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.22);
+}
+
+
+
