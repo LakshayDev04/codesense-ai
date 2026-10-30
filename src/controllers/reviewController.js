@@ -1,8 +1,11 @@
 
-const { analyzeCode } = require("../services/codeAnalyzer");
+
+
+const { analyzeCode } = require('../services/codeAnalyzer');
 
 function analyzeReview(req, res) {
   console.log("DEBUG: analyzeReview was called");
+
   const { code } = req.body || {};
 
   if (typeof code !== "string" || !code.trim()) {
@@ -14,6 +17,7 @@ function analyzeReview(req, res) {
 
   try {
     const issues = analyzeCode(code);
+
     console.log(JSON.stringify(issues, null, 2));
 
     return res.json({
@@ -22,6 +26,7 @@ function analyzeReview(req, res) {
       issueCount: issues.length,
       issues
     });
+
   } catch (error) {
     console.error("Code analysis failed:", error.message);
 
@@ -33,3 +38,5 @@ function analyzeReview(req, res) {
 }
 
 module.exports = { analyzeReview };
+
+

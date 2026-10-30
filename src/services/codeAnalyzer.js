@@ -197,4 +197,7 @@ function analyzeCode(code) {
 
 }
 
-module.exports = { analyzeCode };
+module.exports = {
+  analyzeCode,
+  getIssueTitle
+};
