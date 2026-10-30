@@ -4,6 +4,14 @@ CodeSense AI is a JavaScript code review tool I built using Node.js, Express, an
 
 The project started as a way to understand how static code analysis works and how to make the results more useful to developers.
 
+
+## Live Demo
+
+Try CodeSense AI here:
+
+**[Open CodeSense AI](https://codesense-ai-t09g.onrender.com)**
+
+
 ## Features
 
 - **Code analysis:** Detects common JavaScript issues, including undefined variables, unused variables, unreachable code, and equality checks.
