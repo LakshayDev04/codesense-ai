@@ -361,5 +361,67 @@ body {
   box-shadow: 0 8px 20px rgba(239, 68, 68, 0.22);
 }
 
+/* 
+   ADVANCED CODE EDITOR - CodeMirror
+ */
+
+.CodeMirror {
+    width: 100%;
+    min-height: 300px;
+    height: auto;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    background: #080d19;
+    color: #a5f3fc;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 14px;
+    line-height: 1.8;
+    padding: 10px 0;
+}
+
+/* Editor content */
+.CodeMirror pre {
+    padding-left: 8px;
+}
+
+/* Line numbers */
+.CodeMirror-gutters {
+    background: #0f172a;
+    border-right: 1px solid #334155;
+}
+
+.CodeMirror-linenumber {
+    color: #64748b;
+}
+
+/* Active line */
+.CodeMirror-activeline-background {
+    background: rgba(6, 182, 212, 0.08);
+}
+
+/* Cursor */
+.CodeMirror-cursor {
+    border-left: 2px solid #22d3ee;
+}
+
+/* Selection */
+.CodeMirror-selected {
+    background: #164e63 !important;
+}
+
+/* Focus effect */
+.CodeMirror-focused {
+    border-color: #06b6d4;
+    box-shadow: 0 0 0 2px rgb(6 182 212 / 12%);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+    .CodeMirror {
+        min-height: 240px;
+        font-size: 12px;
+    }
+}
+
 
 

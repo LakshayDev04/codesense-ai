@@ -4,6 +4,7 @@ const analyzeBtn = document.getElementById("analyzeBtn");
 const clearBtn = document.getElementById("clearBtn");
 const applyAllBtn = document.createElement("button");
 const exportReportBtn = document.getElementById("exportReportBtn");
+const formatBtn = document.getElementById("formatBtn");
 
 applyAllBtn.type = "button";
 applyAllBtn.id = "applyAllBtn";
@@ -32,6 +33,107 @@ let issueBreakdownChart = null;
 const reviewCount = document.getElementById("reviewCount");
 const issueCount = document.getElementById("issueCount");
 const reviewStatus = document.getElementById("reviewStatus");
+// Initialize the advanced CodeMirror editor.
+let editor = null;
+
+if (typeof CodeMirror !== "undefined") {
+    editor = CodeMirror.fromTextArea(codeInput, {
+        mode: "javascript",
+        theme: "dracula",
+        lineNumbers: true,
+        indentUnit: 4,
+        tabSize: 4,
+        indentWithTabs: false,
+        lineWrapping: true,
+        electricChars: true,
+        autoCloseBrackets: true,
+        matchBrackets: true,
+
+        extraKeys: {
+            "Ctrl-Enter": function(cm) {
+                analyzeBtn.click();
+            },
+            "Cmd-Enter": function(cm) {
+                analyzeBtn.click();
+            },
+            "Ctrl-/": "toggleComment",
+            "Cmd-/": "toggleComment",
+            "Tab": function(cm) {
+                cm.execCommand("indentMore");
+            },
+            "Shift-Tab": function(cm) {
+                cm.execCommand("indentLess");
+            }
+        }
+    });
+
+    editor.on("change", () => {
+        editor.save();
+    });
+}
+
+// Helper to read the current editor content.
+function getEditorCode() {
+    return editor ? editor.getValue() : codeInput.value;
+}
+
+// Helper to update the editor content.
+function setEditorCode(code) {
+    if (editor) {
+        editor.setValue(code);
+        editor.save();
+    } else {
+        codeInput.value = code;
+    }
+}
+
+// Helper to focus the editor.
+function focusEditor() {
+    if (editor) {
+        editor.focus();
+    } else {
+        codeInput.focus();
+    }
+}
+// Format JavaScript code using Prettier.
+async function formatCode() {
+    const code = getEditorCode();
+
+    if (!code.trim()) {
+        alert("Please enter some code before formatting.");
+        return;
+    }
+
+    try {
+        formatBtn.disabled = true;
+        formatBtn.textContent = "Formatting...";
+
+        const formattedCode = await prettier.format(code, {
+            parser: "babel",
+            plugins: [
+                prettierPlugins.babel,
+                prettierPlugins.estree
+            ],
+            semi: true,
+            singleQuote: false,
+            tabWidth: 4,
+            useTabs: false
+        });
+
+        setEditorCode(formattedCode);
+        focusEditor();
+
+    } catch (error) {
+        console.error("Formatting failed:", error);
+        alert("Could not format this code. Please check its JavaScript syntax.");
+    } finally {
+        formatBtn.disabled = false;
+        formatBtn.textContent = "Format Code";
+    }
+}
+
+// Connect the button to the formatter.
+formatBtn.addEventListener("click", formatCode);
 
 
 const REVIEW_HISTORY_KEY = "codesense_review_history";
@@ -211,7 +313,7 @@ function renderReviewHistory() {
     viewButton.textContent = "View Review";
 
     viewButton.addEventListener("click", () => {
-      codeInput.value = review.code;
+     setEditorCode(review.code);
       issueCount.textContent = String(review.issueCount);
 
       renderResults(review.issues, review.code);
@@ -468,7 +570,7 @@ let latestReviewForExport = null;
 
 clearBtn.addEventListener("click", () => {
   // Clear the editor.
-  codeInput.value = "";
+  setEditorCode("");
 
   // Invalidate the previous analysis and its fixes.
   currentOriginalCode = "";
@@ -483,7 +585,7 @@ clearBtn.addEventListener("click", () => {
   issueCount.textContent = "0";
   reviewStatus.textContent = "Ready";
 
-  codeInput.focus();
+  focusEditor();
 });
 
 // Create an element safely using textContent.
@@ -833,7 +935,7 @@ exportReportBtn.addEventListener("click", () => {
 });
 
 applyAllBtn.addEventListener("click", () => {
-  if (codeInput.value !== currentOriginalCode) {
+if (getEditorCode() !== currentOriginalCode) {
     editorMessage.textContent =
       "The editor has changed. Analyze the code again before applying fixes.";
     return;
@@ -858,14 +960,14 @@ if (currentOriginalCode.trim() && !updatedCode.trim()) {
   return;
 }
 
-codeInput.value = updatedCode;
+setEditorCode(updatedCode);
 
 
   editorMessage.textContent =
     "Fixes applied. Analyze the updated code to verify the results.";
 
   applyAllBtn.hidden = true;
-  codeInput.focus();
+ focusEditor();
 });
 
 
@@ -947,7 +1049,7 @@ function renderSuggestions(card, issue, originalCode) {
 
       applyButton.addEventListener("click", () => {
         // Avoid applying old character positions to edited code.
-        if (codeInput.value !== originalCode) {
+        if (getEditorCode() !== originalCode) {
           editorMessage.textContent =
             "The editor has changed. Analyze the code again before applying this fix.";
           return;
@@ -955,17 +1057,18 @@ function renderSuggestions(card, issue, originalCode) {
 
         const [start, end] = fix.range;
 
-        codeInput.value =
-          originalCode.slice(0, start) +
-          fix.text +
-          originalCode.slice(end);
+        setEditorCode(
+    originalCode.slice(0, start) +
+    fix.text +
+    originalCode.slice(end)
+);
 
         editorMessage.textContent =
           "Suggested fix applied. Analyze the updated code to verify it.";
 
         applyButton.textContent = "Fix Applied";
         applyButton.disabled = true;
-        codeInput.focus();
+        focusEditor();
       });
 
       suggestionCard.appendChild(applyButton);
@@ -1114,12 +1217,12 @@ function renderResults(issues, originalCode) {
 
 // Send code to the backend for analysis.
 analyzeBtn.addEventListener("click", async () => {
-  const code = codeInput.value;
+ const code = getEditorCode();
 
  if (!code.trim()) {
     editorMessage.textContent =
       "Please enter some JavaScript code.";
-    codeInput.focus();
+    focusEditor();
     return;
   }
 
