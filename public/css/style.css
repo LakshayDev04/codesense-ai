@@ -423,5 +423,940 @@ body {
     }
 }
 
+/* Editor Language Toolbar */
+.editor-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
 
+.editor-toolbar label {
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.language-select {
+    padding: 8px 12px;
+    border: 1px solid #334155;
+    border-radius: 7px;
+    background: #172033;
+    color: #e2e8f0;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+}
+
+.language-select:focus {
+    border-color: #06b6d4;
+}
+
+/* Editor Statistics */
+.editor-stats {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    padding: 10px 12px;
+    margin-top: 8px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 7px;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.editor-stats strong {
+    color: #22d3ee;
+    font-weight: 600;
+}
+
+@media (max-width: 640px) {
+    .editor-stats {
+        justify-content: space-between;
+        gap: 8px;
+        font-size: 11px;
+    }
+}
+
+/* Editor Status Bar */
+.editor-statusbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 12px;
+    margin-top: 6px;
+    background: #172033;
+    border: 1px solid #334155;
+    border-radius: 7px;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+#currentLanguage {
+    color: #22d3ee;
+    font-weight: 600;
+}
+
+/* Fullscreen Editor */
+.editor-container:fullscreen {
+    background: #080d19;
+    padding: 25px;
+    overflow-y: auto;
+}
+
+.editor-container:fullscreen .CodeMirror {
+    height: calc(100vh - 180px);
+    min-height: 300px;
+}
+
+.editor-container:fullscreen .editor-stats,
+.editor-container:fullscreen .editor-statusbar {
+    margin-top: 10px;
+}
+
+.editor-container:fullscreen .editor-toolbar {
+    margin-bottom: 15px;
+}
+
+
+
+
+/* Dark Theme */
+.CodeMirror.cm-s-dracula {
+    background: #080d19;
+    color: #a5f3fc;
+    border-color: #334155;
+}
+/* Force Light Theme */
+.CodeMirror.cm-s-default {
+    background-color: #ffffff !important;
+    color: #1e293b !important;
+}
+
+.CodeMirror.cm-s-default .CodeMirror-gutters {
+    background-color: #f1f5f9 !important;
+    border-right: 1px solid #cbd5e1;
+}
+
+.CodeMirror.cm-s-default .CodeMirror-linenumber {
+    color: #64748b !important;
+}
+
+.CodeMirror.cm-s-default .CodeMirror-cursor {
+    border-left: 2px solid #2563eb !important;
+}
+
+.CodeMirror.cm-s-default .CodeMirror-selected {
+    background-color: #bfdbfe !important;
+}
+.CodeMirror.cm-s-default .CodeMirror-activeline-background {
+    background: #f1f5f9;
+}
+
+/* Theme Toggle Switch */
+.theme-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.theme-icon {
+    font-size: 16px;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 25px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.theme-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #334155;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.theme-slider::before {
+    content: "";
+    position: absolute;
+    height: 19px;
+    width: 19px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.theme-switch input:checked + .theme-slider {
+    background-color: #0ea5e9;
+}
+
+.theme-switch input:checked + .theme-slider::before {
+    transform: translateX(23px);
+}
+
+/* =================================
+   RESPONSIVE NAVIGATION
+================================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+#codeReviewSection,
+#reviewHistorySection,
+#analyticsSection {
+    scroll-margin-top: 20px;
+}
+
+/* Mobile navigation */
+.mobile-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 8px;
+    background: #0f172a;
+    border: 1px solid #243044;
+    border-radius: 12px;
+}
+
+.mobile-nav .nav-link {
+    flex: 1 1 100px;
+    text-align: center;
+    padding: 11px 8px;
+    font-size: 13px;
+    white-space: normal;
+}
+
+/* Tablet and mobile */
+@media (max-width: 767px) {
+    main {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .panel {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .mobile-nav .nav-link {
+        font-size: 12px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 380px) {
+    .mobile-nav {
+        gap: 5px;
+        padding: 6px;
+    }
+
+    .mobile-nav .nav-link {
+        flex-basis: 100%;
+    }
+}
+html {
+    scroll-behavior: smooth;
+}
+
+#codeReviewSection,
+#reviewHistorySection,
+#analyticsSection {
+    scroll-margin-top: 25px;
+}
+
+/* =====================================
+   CODE REACTOR - FUTURISTIC UI
+===================================== */
+
+.reactor-wrapper {
+    position: relative;
+    z-index: 100;
+    font-family: inherit;
+}
+
+.reactor-trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border: 1px solid rgba(100, 116, 139, 0.4);
+    border-radius: 30px;
+    background: rgba(15, 23, 42, 0.8);
+    color: #e2e8f0;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.35s ease;
+}
+
+.reactor-trigger:hover {
+    border-color: #f7df1e;
+    box-shadow: 0 0 18px rgba(247, 223, 30, 0.25);
+    transform: translateY(-3px);
+}
+
+.reactor-mini-core {
+    width: 25px;
+    height: 25px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: #f7df1e;
+    color: #111827;
+    font-weight: 900;
+    font-size: 11px;
+    box-shadow: 0 0 12px rgba(247, 223, 30, 0.5);
+}
+
+.reactor-arrow {
+    color: #f7df1e;
+    transition: transform 0.3s ease;
+}
+
+.reactor-wrapper:hover .reactor-arrow,
+.reactor-wrapper.is-open .reactor-arrow {
+    transform: rotate(180deg);
+}
+
+/* Main holographic panel */
+
+.reactor-panel {
+    position: absolute;
+    top: calc(100% + 18px);
+    right: 0;
+    width: 340px;
+    max-width: calc(100vw - 30px);
+    padding: 20px;
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at 50% 25%, rgba(124, 58, 237, 0.16), transparent 40%),
+        linear-gradient(145deg, #111827, #050816 75%);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.55),
+        0 0 30px rgba(34, 211, 238, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px) scale(0.94);
+    transform-origin: top right;
+    transition: opacity 0.3s ease, transform 0.3s ease,
+                visibility 0.3s ease;
+    pointer-events: none;
+    max-height: calc(100vh - 120px);
+overflow-y: auto;
+overscroll-behavior: contain;
+   scrollbar-width: thin;
+    scrollbar-color: #22d3ee #111827;
+}
+
+.reactor-wrapper:hover .reactor-panel,
+.reactor-wrapper:focus-within .reactor-panel,
+.reactor-wrapper.is-open .reactor-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+/* Panel heading */
+
+.reactor-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #67e8f9;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.reactor-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 10px #4ade80;
+    animation: reactorPulse 1.5s infinite;
+}
+
+.reactor-version {
+    margin-left: auto;
+    color: #64748b;
+    font-size: 9px;
+}
+
+/* Animated core */
+
+.reactor-core-area {
+    height: 165px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.reactor-core {
+    width: 76px;
+    height: 76px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fef08a, #f7df1e 55%, #a16207);
+    color: #111827;
+    font-size: 24px;
+    font-weight: 900;
+    box-shadow:
+        0 0 20px rgba(247, 223, 30, 0.7),
+        0 0 55px rgba(247, 223, 30, 0.25);
+    z-index: 2;
+    animation: reactorFloat 3s ease-in-out infinite;
+}
+
+.reactor-orbit {
+    position: absolute;
+    width: 135px;
+    height: 135px;
+    border: 1px solid rgba(34, 211, 238, 0.45);
+    border-radius: 50%;
+}
+
+.orbit-one {
+    transform: rotateX(65deg);
+    animation: reactorSpin 7s linear infinite;
+}
+
+.orbit-two {
+    width: 115px;
+    height: 145px;
+    border-color: rgba(167, 139, 250, 0.6);
+    transform: rotateY(65deg);
+    animation: reactorSpinReverse 9s linear infinite;
+}
+
+.floating-code {
+    position: absolute;
+    color: #67e8f9;
+    font-size: 15px;
+    font-weight: bold;
+    text-shadow: 0 0 12px #22d3ee;
+    animation: reactorFloat 3s ease-in-out infinite;
+}
+
+.code-one {
+    top: 25px;
+    left: 65px;
+}
+
+.code-two {
+    right: 65px;
+    top: 40px;
+    animation-delay: 0.6s;
+}
+
+.code-three {
+    bottom: 18px;
+    left: 50%;
+    animation-delay: 1s;
+}
+
+/* Title */
+
+.reactor-title {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.reactor-title h3 {
+    color: #f8fafc;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.reactor-title p {
+    color: #94a3b8;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+/* Interactive modules */
+
+.reactor-modules {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+}
+
+.reactor-module {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 12px;
+    border: 1px solid rgba(100, 116, 139, 0.2);
+    border-radius: 12px;
+    background: rgba(30, 41, 59, 0.55);
+    color: #e2e8f0;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.reactor-module:hover,
+.reactor-module.active {
+    border-color: #22d3ee;
+    background: rgba(8, 145, 178, 0.14);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 18px rgba(34, 211, 238, 0.1);
+}
+
+.reactor-module > span {
+    color: #f7df1e;
+    font-size: 19px;
+}
+
+.reactor-module strong {
+    font-size: 11px;
+}
+
+.reactor-module small {
+    color: #94a3b8;
+    font-size: 9px;
+}
+
+/* Footer and messages */
+
+.reactor-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 17px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(100, 116, 139, 0.2);
+    color: #4ade80;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.reactor-footer span:last-child {
+    color: #64748b;
+}
+
+.reactor-message {
+    min-height: 30px;
+    margin-top: 12px;
+    padding: 9px;
+    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.8);
+    color: #67e8f9;
+    font-size: 10px;
+    text-align: center;
+}
+
+/* Animations */
+
+@keyframes reactorPulse {
+    50% {
+        opacity: 0.4;
+        box-shadow: 0 0 3px #4ade80;
+    }
+}
+
+@keyframes reactorFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+@keyframes reactorSpin {
+    from {
+        transform: rotateX(65deg) rotateZ(0deg);
+    }
+    to {
+        transform: rotateX(65deg) rotateZ(360deg);
+    }
+}
+
+@keyframes reactorSpinReverse {
+    from {
+        transform: rotateY(65deg) rotateZ(0deg);
+    }
+    to {
+        transform: rotateY(65deg) rotateZ(-360deg);
+    }
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 480px) {
+    .reactor-panel {
+        right: -5px;
+        width: min(340px, calc(100vw - 30px));
+    }
+}
+
+/* Accessibility: reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    .reactor-core,
+    .reactor-orbit,
+    .floating-code,
+    .reactor-live-dot {
+        animation: none;
+    }
+}
+.reactor-message {
+    max-height: 220px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #22d3ee #111827;
+    line-height: 1.5;
+}
+
+/* =====================================
+   REACTOR PERFORMANCE DASHBOARD
+===================================== */
+
+.reactor-performance-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.performance-score {
+    padding: 12px;
+    border: 1px solid rgba(34, 211, 238, 0.25);
+    border-radius: 10px;
+    background: rgba(8, 145, 178, 0.08);
+}
+
+.performance-score p {
+    color: #94a3b8;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+
+.performance-score h2 {
+    color: #67e8f9;
+    font-size: 26px;
+    font-weight: 800;
+    margin: 5px 0 10px;
+}
+
+.performance-progress {
+    height: 6px;
+    border-radius: 10px;
+    background: #263449;
+    overflow: hidden;
+}
+
+.performance-progress-fill {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #22d3ee, #a78bfa);
+    transition: width 0.7s ease;
+}
+
+.performance-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.performance-metric-card {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 11px;
+    border: 1px solid rgba(100, 116, 139, 0.2);
+    border-radius: 9px;
+    background: rgba(30, 41, 59, 0.65);
+}
+
+.performance-metric-card strong {
+    color: #f8fafc;
+    font-size: 20px;
+}
+
+.performance-metric-card span {
+    color: #94a3b8;
+    font-size: 9px;
+    letter-spacing: 0.7px;
+}
+
+.performance-footer {
+    color: #64748b;
+    font-size: 9px;
+    text-align: center;
+}
+
+/* =====================================
+   SYNTAX ENGINE DASHBOARD
+===================================== */
+
+.reactor-syntax-dashboard {
+    text-align: left;
+}
+
+.syntax-heading {
+    color: #67e8f9;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.syntax-line-info {
+    color: #94a3b8;
+    font-size: 10px;
+    margin-bottom: 12px;
+}
+
+.syntax-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.syntax-stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 11px;
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    border-radius: 10px;
+    transition: 0.25s ease;
+}
+
+.syntax-stat-card:hover {
+    transform: translateY(-3px);
+    border-color: #22d3ee;
+    box-shadow: 0 0 12px rgba(34, 211, 238, 0.12);
+}
+
+.syntax-stat-card strong {
+    color: #f7df1e;
+    font-size: 22px;
+}
+
+.syntax-stat-card span {
+    color: #94a3b8;
+    font-size: 9px;
+}
+
+.syntax-note {
+    margin-top: 12px;
+    color: #64748b;
+    font-size: 9px;
+    text-align: center;
+}
+
+/* =====================================
+   CODE REACTOR - AI ANALYSIS
+===================================== */
+
+.reactor-ai-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+
+.ai-report-heading {
+    color: #c4b5fd;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.ai-report-subtitle {
+    color: #94a3b8;
+    font-size: 10px;
+}
+
+.ai-summary {
+    padding: 12px;
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 10px;
+    background: rgba(124, 58, 237, 0.1);
+}
+
+.ai-summary strong {
+    color: #c4b5fd;
+    font-size: 12px;
+}
+
+.ai-summary p {
+    color: #cbd5e1;
+    font-size: 10px;
+    margin-top: 6px;
+    line-height: 1.6;
+}
+
+.ai-section-heading {
+    color: #67e8f9;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.ai-recommendation-card {
+    padding: 12px;
+    border: 1px solid rgba(100, 116, 139, 0.25);
+    border-radius: 10px;
+    background: rgba(30, 41, 59, 0.65);
+    transition: 0.25s ease;
+}
+
+.ai-recommendation-card:hover {
+    border-color: #a78bfa;
+    transform: translateY(-2px);
+}
+
+.ai-priority {
+    display: inline-block;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 7px;
+}
+
+.ai-priority.high {
+    color: #f87171;
+}
+
+.ai-priority.low {
+    color: #facc15;
+}
+
+.ai-recommendation-card h4 {
+    color: #f8fafc;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.ai-recommendation-card p {
+    color: #cbd5e1;
+    font-size: 10px;
+    line-height: 1.6;
+    margin-bottom: 9px;
+}
+
+.ai-recommendation-card strong {
+    color: #67e8f9;
+    font-size: 10px;
+}
+
+.ai-recommendation-card small {
+    display: block;
+    color: #64748b;
+    font-size: 9px;
+    margin-top: 8px;
+}
+
+.ai-success-card {
+    padding: 12px;
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    border-radius: 10px;
+    background: rgba(22, 163, 74, 0.1);
+    color: #86efac;
+    font-size: 11px;
+}
+
+
+/* =====================================
+   AI CODING CHAT - MARKDOWN STYLING
+===================================== */
+
+.chat-message-content {
+    overflow-wrap: anywhere;
+}
+
+.chat-message-content p {
+    margin-bottom: 12px;
+}
+
+.chat-message-content h1,
+.chat-message-content h2,
+.chat-message-content h3 {
+    color: #67e8f9;
+    font-weight: 700;
+    margin: 18px 0 10px;
+}
+
+.chat-message-content ul,
+.chat-message-content ol {
+    padding-left: 24px;
+    margin: 12px 0;
+}
+
+.chat-message-content ul {
+    list-style: disc;
+}
+
+.chat-message-content ol {
+    list-style: decimal;
+}
+
+.chat-message-content li {
+    margin-bottom: 6px;
+}
+
+.chat-message-content pre {
+    position: relative;
+    margin: 14px 0;
+    padding: 18px;
+    padding-top: 48px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+.chat-message-content pre code {
+    font-family: Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre;
+}
+
+.chat-message-content :not(pre) > code {
+    background: #334155;
+    color: #67e8f9;
+    padding: 3px 6px;
+    border-radius: 5px;
+}
+
+.chat-copy-btn {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    padding: 5px 11px;
+    border: 1px solid #475569;
+    border-radius: 6px;
+    background: #1e293b;
+    color: #67e8f9;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.chat-copy-btn:hover {
+    background: #334155;
+}
 

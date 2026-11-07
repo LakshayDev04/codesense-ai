@@ -17,7 +17,9 @@ module.exports = [
         __dirname: "readonly",
         __filename: "readonly",
         setTimeout: "readonly",
-        clearTimeout: "readonly"
+        clearTimeout: "readonly",
+        ...globals.node,
+        fetch: "readonly"
       }
     },
 

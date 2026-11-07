@@ -9,10 +9,16 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/style.css">
+  <!-- AI Chat Markdown Code Styling -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+>
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/codemirror@5.65.20/lib/codemirror.css">
 <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/codemirror@5.65.20/theme/dracula.css">
+ 
 </head>
 
 <body class="bg-slate-950 text-slate-100 min-h-screen">
@@ -28,11 +34,12 @@
         Intelligent Code Review
       </p>
 
-      <nav class="mt-10 space-y-3">
-        <a href="#" class="nav-link active">Code Review</a>
-        <a href="#" class="nav-link">Review History</a>
-        <a href="#" class="nav-link">Analytics</a>
-      </nav>
+     <nav class="mt-10 space-y-3">
+    <a href="#codeReviewSection" class="nav-link active">Code Review</a>
+    <a href="#aiChatSection" class="nav-link">AI Coding Chat</a>
+    <a href="#reviewHistorySection" class="nav-link">Review History</a>
+    <a href="#analyticsSection" class="nav-link">Analytics</a>
+</nav>
 
       <div class="mt-12 rounded-xl bg-slate-900 p-4">
         <p class="text-sm font-semibold">Code Quality</p>
@@ -45,7 +52,15 @@
     <!-- Main content -->
     <main class="flex-1 p-5 md:p-10">
 
-      <header class="flex flex-wrap items-center justify-between gap-4 mb-8">
+      <!-- Mobile Navigation -->
+<nav class="mobile-nav md:hidden">
+    <a href="#codeReviewSection" class="nav-link active">Code Review</a>
+    <a href="#aiChatSection" class="nav-link">AI Coding Chat</a>
+    <a href="#reviewHistorySection" class="nav-link">Review History</a>
+    <a href="#analyticsSection" class="nav-link">Analytics</a>
+</nav>
+
+    <header id="codeReviewSection" class="flex flex-wrap items-center justify-between gap-4 mb-8">
         <div>
           <p class="text-sm text-cyan-400">DEVELOPER WORKSPACE</p>
           <h2 class="text-3xl font-bold mt-2">Code Review</h2>
@@ -54,9 +69,86 @@
           </p>
         </div>
 
-        <span class="rounded-full border border-slate-700 px-4 py-2 text-sm">
-          JavaScript
-        </span>
+        <!-- Code Reactor -->
+<div class="reactor-wrapper" id="reactorWrapper">
+
+    <button class="reactor-trigger" id="reactorTrigger"
+        aria-expanded="false" aria-controls="reactorPanel">
+
+        <span class="reactor-mini-core">JS</span>
+        <span id="reactorLanguage">JavaScript</span>
+        <span class="reactor-arrow">⌄</span>
+
+    </button>
+
+    <!-- Interactive Reactor Panel -->
+    <div class="reactor-panel" id="reactorPanel">
+
+        <div class="reactor-heading">
+            <span class="reactor-live-dot"></span>
+            CODE REACTOR
+            <span class="reactor-version">SYSTEM 01</span>
+        </div>
+
+        <div class="reactor-core-area">
+
+            <div class="reactor-orbit orbit-one"></div>
+            <div class="reactor-orbit orbit-two"></div>
+
+            <div class="reactor-core" id="reactorCore">
+                <span id="reactorSymbol">JS</span>
+            </div>
+
+            <span class="floating-code code-one">{ }</span>
+            <span class="floating-code code-two">=&gt;</span>
+            <span class="floating-code code-three">&lt;/&gt;</span>
+
+        </div>
+
+        <div class="reactor-title">
+            <h3 id="reactorTitle">JavaScript Core</h3>
+            <p>Development environment initialized</p>
+        </div>
+
+        <div class="reactor-modules">
+
+            <button class="reactor-module" data-module="syntax">
+                <span>⌘</span>
+                <strong>Syntax Engine</strong>
+                <small>Code parsing</small>
+            </button>
+
+            <button class="reactor-module" data-module="errors">
+                <span>◈</span>
+                <strong>Error Scanner</strong>
+                <small>Issue detection</small>
+            </button>
+
+            <button class="reactor-module" data-module="performance">
+                <span>ϟ</span>
+                <strong>Performance</strong>
+                <small>Code efficiency</small>
+            </button>
+
+            <button class="reactor-module" data-module="ai">
+                <span>✧</span>
+                <strong>AI Analysis</strong>
+                <small>Smart suggestions</small>
+            </button>
+
+        </div>
+
+        <div class="reactor-footer">
+            <span>● SYSTEM ONLINE</span>
+            <span>COD E / 001</span>
+        </div>
+
+        <div class="reactor-message" id="reactorMessage" aria-live="polite">
+            Select a module to explore.
+        </div>
+
+    </div>
+</div>
       </header>
 
       <!-- Stats -->
@@ -79,6 +171,28 @@
         </div>
       </section>
 
+      <!-- Editor Language Selector -->
+<div class="editor-toolbar">
+    <label for="languageSelect">Language:</label>
+
+    <select id="languageSelect" class="language-select">
+        <option value="javascript">JavaScript</option>
+        <option value="python">Python</option>
+        <option value="text/x-c++src">C++</option>
+        <option value="text/x-java">Java</option>
+    </select>
+  <div class="theme-toggle-container">
+    <span class="theme-icon">☀️</span>
+
+    <label class="theme-switch">
+        <input type="checkbox" id="themeToggle">
+        <span class="theme-slider"></span>
+    </label>
+
+    <span class="theme-icon">🌙</span>
+</div>
+</div>
+
       <!-- Code editor -->
       <section class="panel mb-8">
         <div class="flex flex-wrap justify-between gap-3 mb-5">
@@ -92,12 +206,27 @@
             Clear code
           </button>
         </div>
+        <div class="editor-container">
 
         <textarea id="codeInput" spellcheck="false" aria-label="JavaScript code editor" class="code-editor"
           placeholder="// Write or paste your JavaScript code here...">function calculateTotal(price, quantity) {
     total = price * quantity;
     return total;
 }</textarea>
+
+
+<!-- Editor Statistics -->
+<div class="editor-stats">
+    <span>Lines: <strong id="lineCount">1</strong></span>
+    <span>Characters: <strong id="charCount">0</strong></span>
+    <span>Words: <strong id="wordCount">0</strong></span>
+</div>
+
+<!-- Editor Status Bar -->
+<div class="editor-statusbar">
+    <span id="cursorPosition">Ln 1, Col 1</span>
+    <span id="currentLanguage">JavaScript</span>
+</div>
 
         <div class="flex flex-wrap items-center justify-between gap-4 mt-5">
           <p id="editorMessage" class="text-sm text-slate-400">
@@ -106,15 +235,22 @@
           <button id="analyzeBtn" class="primary-btn">
             Analyze Code →
           </button>
+          <button id="aiReviewBtn" class="secondary-btn" type="button">
+    ✨ AI Code Review
+</button>
 
           <button id="formatBtn" class="secondary-btn" type="button">
     Format Code
+</button>
+<button id="fullscreenBtn" class="secondary-btn" type="button">
+    ⛶ Fullscreen
 </button>
         </div>
       </section>
 
       <!-- Results -->
-      <section class="panel">
+     <!-- Results -->
+<section id="analysisResultsSection" class="panel">
         <div class="mb-5">
           <h3 class="text-lg font-semibold">Analysis Results</h3>
           
@@ -141,14 +277,149 @@
               Submit your code to see the results.
             </p>
           </div>
+  
         </div>
+                <!-- Ollama AI Review Results -->
+<div id="aiReviewPanel" class="issue-card mt-6" hidden>
+
+    <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-cyan-400">
+            ✨ AI Code Review
+        </h3>
+
+        <span class="text-xs text-slate-400">
+            Powered by Ollama
+        </span>
+    </div>
+
+    <div
+        id="aiReviewContent"
+        class="text-sm text-slate-300 whitespace-pre-wrap leading-7"
+    ></div>
+
+</div>
       </section>
       
+<!-- AI Coding Chat -->
+<section id="aiChatSection" class="panel mb-8">
+
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+        <div>
+            <h3 class="text-xl font-semibold text-cyan-400">
+                ✨ AI Coding Assistant
+            </h3>
+            <p class="text-sm text-slate-400 mt-1">
+                Ask questions, understand code and solve programming problems.
+            </p>
+        </div>
+
+        <button id="chatClearBtn" class="secondary-btn" type="button">
+            New Chat
+        </button>
+    </div>
+
+    <!-- Chat messages -->
+    <div
+        id="chatMessages"
+        class="space-y-4 mb-5 p-4 rounded-xl bg-slate-900"
+        style="min-height: 280px; max-height: 450px; overflow-y: auto;"
+        aria-live="polite"
+    >
+        <div class="p-4 rounded-lg bg-slate-800">
+            <p class="text-xs text-cyan-400 font-semibold mb-2">
+                CODESENSE AI
+            </p>
+            <p class="text-sm text-slate-200">
+                Hello! I'm your AI coding assistant. Ask me anything about
+                programming, or let me help you understand the code in your editor.
+            </p>
+        </div>
+    </div>
+
+    <!-- Include editor context -->
+    <label class="flex items-center gap-2 text-sm text-slate-400 mb-3">
+        <input type="checkbox" id="chatIncludeCode" checked>
+        Include my current editor code
+    </label>
+
+    <!-- Message input -->
+    <div class="flex flex-col gap-3">
+        <textarea
+            id="chatInput"
+            rows="3"
+            maxlength="8000"
+            placeholder="Ask something... e.g. Explain this function or help me fix this error."
+            class="w-full p-4 rounded-xl bg-slate-900 border border-slate-700 text-slate-100"
+        ></textarea>
+
+        <div class="flex justify-between items-center gap-3">
+            <p id="chatStatus" class="text-xs text-slate-500">
+                Powered by Ollama · Ready
+            </p>
+
+            <button
+                id="chatSendBtn"
+                class="primary-btn"
+                type="button"
+            >
+                Send Message →
+            </button>
+        </div>
+    </div>
+
+</section>
+
+      
       <!-- Review History -->
-      <section class="panel">
+    <section id="reviewHistorySection" class="panel">
         <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
           <div>
             <h3 class="text-lg font-semibold">Review History</h3>
+            
+<!-- Search and Filter Controls -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5 mb-6">
+
+    <!-- Search -->
+    <input
+        type="text"
+        id="historySearch"
+        placeholder="Search reviews..."
+        class="w-full p-3 rounded-lg border border-gray-300 text-gray-800"
+    >
+
+    <!-- Date Filter -->
+    <input
+        type="date"
+        id="historyDateFilter"
+        class="w-full p-3 rounded-lg border border-gray-300 text-gray-800"
+    >
+
+    <!-- Quality Score Filter -->
+    <select
+        id="qualityFilter"
+        class="w-full p-3 rounded-lg border border-gray-300 text-gray-800"
+    >
+        <option value="all">All Quality Scores</option>
+        <option value="excellent">Excellent (80–100)</option>
+        <option value="good">Good (60–79)</option>
+        <option value="average">Average (40–59)</option>
+        <option value="poor">Poor (0–39)</option>
+    </select>
+
+    <!-- Issue Count Filter -->
+    <select
+        id="issueFilter"
+        class="w-full p-3 rounded-lg border border-gray-300 text-gray-800"
+    >
+        <option value="all">All Issues</option>
+        <option value="none">No Issues</option>
+        <option value="low">1–5 Issues</option>
+        <option value="medium">6–10 Issues</option>
+        <option value="high">More than 10 Issues</option>
+    </select>
+
+</div>
+
             <p class="text-sm text-slate-400 mt-1">
               View your previous code reviews.
             </p>
@@ -172,7 +443,7 @@
       </section>
       
       <!-- Analytics Dashboard -->
-      <section class="panel">
+     <section id="analyticsSection" class="panel">
         <div class="mb-5">
           <h3 class="text-lg font-semibold">Review Analytics</h3>
           <p class="text-sm text-slate-400 mt-1">
@@ -244,6 +515,12 @@
 <!-- JavaScript Syntax Highlighting -->
 <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.20/mode/javascript/javascript.js"></script>
 
+<!-- Python Syntax Highlighting -->
+<script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.20/mode/python/python.js"></script>
+
+<!-- C++ and Java Syntax Highlighting -->
+<script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.20/mode/clike/clike.js"></script>
+
 <!-- Editor Addons -->
 <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.20/addon/edit/closebrackets.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.20/addon/edit/matchbrackets.js"></script>
@@ -253,6 +530,15 @@
 <script src="https://unpkg.com/prettier@3.6.2/standalone.js"></script>
 <script src="https://unpkg.com/prettier@3.6.2/plugins/babel.js"></script>
 <script src="https://unpkg.com/prettier@3.6.2/plugins/estree.js"></script>
+
+<!-- Markdown Parser -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<!-- HTML Sanitizer -->
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+
+<!-- Syntax Highlighting -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
 
 <!-- Application JavaScript -->
 <script src="/js/app.js"></script>
