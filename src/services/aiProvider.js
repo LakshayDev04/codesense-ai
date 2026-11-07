@@ -82,15 +82,20 @@ async function generateChatCompletion(messages) {
             );
         }
 
-        return {
-            reply: data.message?.content,
-            model: OLLAMA_MODEL,
-            provider: "ollama"
-        };
+            } catch (error) {
+        console.error("AI Provider Diagnostic:", {
+            provider: AI_PROVIDER,
+            error: error.message,
+            cause: error.cause?.message,
+            code: error.cause?.code
+        });
+
+        throw error;
 
     } finally {
         clearTimeout(timeout);
     }
+
 }
 
 module.exports = {
