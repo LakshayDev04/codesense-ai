@@ -1,183 +1,67 @@
 # CodeSense AI
 
-CodeSense AI is a JavaScript code review tool I built using Node.js, Express, and ESLint. It checks code for common issues and displays the results in a simple web interface, so you can review problems without having to read through terminal output.
+**An AI-assisted code review platform that helps developers identify coding issues, understand suggested improvements, and improve code quality.**
 
-The project started as a way to understand how static code analysis works and how to make the results more useful to developers.
+CodeSense AI is a web-based code analysis and review application built using Node.js, Express.js, JavaScript, and ESLint. It combines static code analysis with AI-assisted code review in an interactive developer interface.
 
+The project was built to explore static code analysis, backend API development, AI integration, and ways to make code quality feedback more accessible to developers.
 
 ## Live Demo
 
-Try CodeSense AI here:
-
 **[Open CodeSense AI](https://codesense-ai-t09g.onrender.com)**
 
+**GitHub Repository:** [LakshayDev04/codesense-ai](https://github.com/LakshayDev04/codesense-ai)
 
 ## Features
 
-- **Code analysis:** Detects common JavaScript issues, including undefined variables, unused variables, unreachable code, and equality checks.
-- **Suggested fixes:** Shows possible fixes for supported issues, with options to apply individual fixes or apply all available fixes.
-- **Quality score:** Gives the reviewed code a score based on the project's scoring logic.
-- **Issue explanations:** Provides explanations of detected issues and guidance on how to fix them.
-- **Review history:** Saves previous reviews so they can be viewed again or deleted.
-- **Analytics:** Displays information about previous code reviews.
-- **HTML report export:** Exports review results as an HTML report.
-- **Input validation and feedback:** Handles empty input and displays the current analysis status.
+### Code Analysis
+- Analyze JavaScript code using ESLint.
+- Detect undefined variables, unused variables, unreachable code, and equality-related issues.
+- Display issue details and code locations.
+- Explain detected issues and provide improvement guidance.
+
+### Suggested Fixes
+- Display suggested fixes for supported issues.
+- Apply fixes individually.
+- Apply all available supported fixes.
+- Prevent applying outdated fixes when the editor content has changed since analysis.
+
+### AI-Powered Features
+- AI-assisted code review.
+- AI coding chat with conversation history.
+- Include editor code as context for coding assistance.
+- Render formatted AI responses with Markdown and syntax highlighting.
+
+*AI features use a configurable provider. Local development supports Ollama; hosted AI availability depends on the configured provider and deployment environment.*
+
+### Code Quality and Analytics
+- Calculate a code quality score.
+- View previous code reviews.
+- Filter and manage review history.
+- Visualize review statistics through analytics charts.
+- Export review reports as HTML files.
+
+### Developer Experience
+- Interactive code editor.
+- Multiple language selections in the editor.
+- Responsive desktop and mobile navigation.
+- Input validation, loading indicators, and error feedback.
+
+*Static ESLint analysis is currently focused on JavaScript.*
 
 ## Tech Stack
 
-- **Backend:** Node.js, Express.js
-- **Code analysis:** ESLint
-- **Frontend:** HTML, CSS, JavaScript
-- **Other tools:** npm, Git, GitHub
-
-## Getting Started
-
-### Prerequisites
-
-Make sure you have Node.js and npm installed on your system.
-
-### Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/LakshayDev04/codesense-ai.git
-```
-
-Move into the project directory:
-
-```bash
-cd codesense-ai
-```
-
-Install the dependencies:
-
-```bash
-npm install
-```
-
-### Run the application
-
-Start the development server:
-
-```bash
-npm run dev
-```
-
-Open the following address in your browser:
-
-```text
-http://localhost:5000
-```
-
-To start the application without nodemon, use:
-
-```bash
-npm start
-```
-
-## How to Use
-
-1. Open CodeSense AI in your browser.
-2. Enter or paste a JavaScript code snippet into the editor.
-3. Click **Analyze Code** to run the review.
-4. Read the reported issues, their locations, and the suggested guidance.
-5. Apply an available fix individually or use Apply All Fixes where supported.
-6. Check the quality score and review analytics.
-7. Revisit previous reviews through the history section or export a report.
-
-## Example
-
-Try analysing this JavaScript snippet:
-
-```javascript
-const age = 18;
-
-if (age == 18) {
-  console.log("Adult");
-}
-```
-
-The analyzer can flag the use of `==` under the configured `eqeqeq` rule and suggest using `===` instead.
-
-```javascript
-const age = 18;
-
-if (age === 18) {
-  console.log("Adult");
-}
-```
-
-The issues reported depend on the rules enabled in the project's ESLint configuration.
-
-## Project Structure
-
-```text
-codesense-ai/
-├── public/
-│   ├── js/
-│   │   └── app.js
-│   └── ...
-├── src/
-│   ├── controllers/
-│   ├── routes/
-│   ├── services/
-│   └── server.js
-├── eslint.config.js
-├── package.json
-├── package-lock.json
-├── test-analyzer.js
-└── README.md
-```
-
-The `public` directory contains the frontend, while `src` contains the server, routes, controllers, and code analysis logic.
-
-## What I Learned
-
-Building this project helped me practise working with Express routes, integrating ESLint into a Node.js application, connecting frontend interactions to backend APIs, and handling analysis results in the UI.
-
-I also worked on applying code fixes safely, protecting against changes made after an analysis, and displaying review history and analytics.
-
-## Future Improvements
-
-- Add more automated tests for different types of JavaScript issues and suggested fixes.
-- Improve the accuracy and coverage of automatic fixes.
-- Add support for more configurable linting rules.
-- Deploy the application so it can be accessed online.
-- Improve the review reports and analytics as the project grows.
-
-## Author
-
-**Lakshay Bhardwaj**
-
-GitHub: [LakshayDev04](https://github.com/LakshayDev04)
-
----
-
-This project is a learning project that I continue to improve as I explore JavaScript tooling and code quality analysis.
-
-
-# CodeSense AI
-
-CodeSense AI is a web-based code review tool built with JavaScript, Node.js, Express, and ESLint. It helps identify common coding issues and makes code review easier through a simple interface.
-
-## Features
-
-- Analyze JavaScript code for common errors and warnings
-- Display issues with their line and column numbers
-- Show suggested fixes for supported issues
-- Apply individual fixes or apply multiple fixes
-- Calculate a code quality score
-- View review results through a web interface
-
-## Tech Stack
-
-- HTML
-- CSS
-- JavaScript
-- Node.js
-- Express.js
-- ESLint
+| Category | Technologies |
+|---|---|
+| Frontend | HTML, CSS, JavaScript |
+| Code Editor | CodeMirror |
+| Code Formatting | Prettier |
+| Backend | Node.js, Express.js |
+| Static Analysis | ESLint |
+| AI Integration | Ollama, Groq provider integration |
+| UI and Rendering | Marked, DOMPurify, Highlight.js |
+| Deployment | Render |
+| Version Control | Git, GitHub |
 
 ## Getting Started
 
@@ -185,53 +69,179 @@ CodeSense AI is a web-based code review tool built with JavaScript, Node.js, Exp
 
 - Node.js
 - npm
+- Git
 
-### Installation
+For local AI features, install [Ollama](https://ollama.com/) and download the configured model.
 
-1. Clone the repository:
+### 1. Clone the repository
 
-   ```bash
-   git clone https://github.com/LakshayDev04/codesense-ai.git
-   ```
+```bash
+git clone https://github.com/LakshayDev04/codesense-ai.git
+```
 
-2. Open the project folder:
+### 2. Navigate to the project directory
 
-   ```bash
-   cd codesense-ai
-   ```
+```bash
+cd codesense-ai
+```
 
-3. Install the dependencies:
+### 3. Install dependencies
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
-4. Start the development server:
+### 4. Configure environment variables
 
-   ```bash
-   npm run dev
-   ```
+Create a `.env` file in the root directory:
 
-5. Open the local URL shown in your terminal. If the server uses port 5000, visit `http://localhost:5000`.
+```env
+PORT=5000
+AI_PROVIDER=ollama
+OLLAMA_URL=http://127.0.0.1:11434
+OLLAMA_MODEL=qwen2.5-coder:3b
+```
+
+Make sure Ollama is running and the configured model is available before using local AI features.
+
+### 5. Start the application
+
+For development:
+
+```bash
+npm run dev
+```
+
+For normal execution:
+
+```bash
+npm start
+```
+
+### 6. Open the application
+
+Visit:
+
+```text
+http://localhost:5000
+```
+
+## How to Use
+
+1. Open CodeSense AI in your browser.
+2. Enter or paste JavaScript code into the editor.
+3. Select the required language option.
+4. Click **Analyze Code** to run static analysis.
+5. Review detected issues, explanations, and suggested fixes.
+6. Apply individual fixes or use Apply All Fixes where supported.
+7. Check the code quality score and analytics.
+8. Use AI Code Review or AI Coding Chat when the configured AI provider is available.
+9. Revisit previous reviews or export an HTML report.
+
+## Example
+
+Consider the following JavaScript code:
+
+```javascript
+const age = 18;
+
+if (age == 18) {
+    console.log("Adult");
+}
+```
+
+With the configured ESLint `eqeqeq` rule, CodeSense AI can identify the use of loose equality.
+
+A suggested improvement is:
+
+```javascript
+const age = 18;
+
+if (age === 18) {
+    console.log("Adult");
+}
+```
+
+The issues reported depend on the ESLint rules enabled in the project configuration.
+
+## Project Structure
+
+```text
+codesense-ai/
+│
+├── public/
+│   ├── css/
+│   ├── js/
+│   └── index.html
+│
+├── src/
+│   ├── controllers/
+│   ├── routes/
+│   ├── services/
+│   └── server.js
+│
+├── eslint.config.js
+├── package.json
+├── package-lock.json
+├── test-analyzer.js
+└── README.md
+```
+
+The `public` directory contains the frontend application, while `src` contains the backend server, API routes, controllers, and services for code analysis and AI integration.
 
 ## Screenshots
 
+Add your screenshots to a `screenshots/` directory in the repository.
+
 ### Dashboard
+
 ![CodeSense AI Dashboard](screenshots/dashboard.png)
 
 ### Code Analysis
+
 ![Code Analysis Results](screenshots/analytics.png)
 
 ### Code Quality Score
+
 ![Code Quality Score](screenshots/reviewscore.png)
 
 ### Suggested Fixes
+
 ![Suggested Fixes](screenshots/suggested-fixes.png)
 
 ### Issue Breakdown
+
 ![Issue Breakdown](screenshots/issue-breakdown.png)
 
+## What I Learned
 
-## Project Status
+Building CodeSense AI helped me gain practical experience with:
 
-This project is under development. Features and improvements may be added as development continues.
+- Developing REST APIs using Node.js and Express.js.
+- Integrating ESLint for static code analysis.
+- Connecting frontend interfaces with backend services.
+- Implementing automated code-fix workflows.
+- Integrating AI models into an application.
+- Managing application state and review history.
+- Rendering Markdown and syntax-highlighted code safely.
+- Deploying and maintaining a full-stack application.
+
+## Future Improvements
+
+- Expand static analysis support to additional programming languages.
+- Improve automated fix accuracy and coverage.
+- Add automated testing for analysis and AI workflows.
+- Improve AI review reliability and error handling.
+- Enhance analytics and downloadable reports.
+
+## Author
+
+**Lakshay Bhardwaj**
+
+- GitHub: [LakshayDev04](https://github.com/LakshayDev04)
+- Project: [CodeSense AI](https://github.com/LakshayDev04/codesense-ai)
+- Live Application: [codesense-ai-t09g.onrender.com](https://codesense-ai-t09g.onrender.com)
+
+---
+
+*CodeSense AI is a personal development project focused on exploring code quality, static analysis, and AI-assisted developer tools.*
