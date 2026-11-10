@@ -205,6 +205,15 @@ Add your screenshots to a `screenshots/` directory in the repository.
 
 ![Code Quality Score](screenshots/reviewscore.png)
 
+### AI Coding Assistant
+
+![AI Coding Assistant](screenshots/AI-code-assistant.png)
+
+### AI Code Review
+
+![AI Code Review](screenshots/AI-code-review.png)
+
+
 ### Suggested Fixes
 
 ![Suggested Fixes](screenshots/suggested-fixes.png)
@@ -212,6 +221,12 @@ Add your screenshots to a `screenshots/` directory in the repository.
 ### Issue Breakdown
 
 ![Issue Breakdown](screenshots/issue-breakdown.png)
+
+## System Architecture
+
+![AI Architecture Diagram](screenshots/AI-architecture-diagram.png)
+
+The frontend communicates with the Express.js backend through REST API routes. Static JavaScript analysis is handled by ESLint, while AI-assisted review and coding chat use a shared AI provider service. The provider can be configured for local Ollama or hosted Groq integration.
 
 ## What I Learned
 
